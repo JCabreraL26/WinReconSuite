@@ -1,0 +1,100 @@
+[
+    {
+        "ip": "192.168.1.1",
+        "mac": "88:65:9f:cc:8f:28",
+        "servicios": [
+            {
+                "puerto": 80,
+                "banner": "HTTP/1.1 302 Moved Temporarily\r\nDate: Wed, 18 Nov 2026 16:17:55 GMT\r\nContent-Type: text/html\r\nContent-Length: 110\r\nConnection: close\r\nLocation: /index.html?7056\r\nExpires: Thu, 01 Jan 1970 00:00:01 GMT\r\nCache-Control: no-cache, no-store, max-age=0, must-revalidate\r\nX-Frame-Options: SAMEORIGIN\r\nX-Content-Type-Options: nosniff\r\nX-XSS-Protection: 1; mode=block\r\nPragma: no-cache\r\nX-Download-Options: noopen\r\nX-Permitted-Cross-Domain-Policies: master-only\r\nReferrer-Policy: no-referrer-when-downgrade\r\nStrict-Transport-Security: max-age=0\r\n\r\n<html>\r\n<head><title>302 Found</title></head>\r\n<body>\r\n<center><h1>302 Found</h1></center>\r\n</body>\r\n</html>",
+                "fingerprint": {
+                    "producto": "Desconocido",
+                    "version": "Desconocida",
+                    "cpe": null
+                },
+                "cves": []
+            }
+        ]
+    },
+    {
+        "ip": "192.168.1.2",
+        "mac": "00:15:c0:b1:ac:7b",
+        "servicios": []
+    },
+    {
+        "ip": "192.168.1.14",
+        "mac": "7c:50:79:dc:bb:21",
+        "servicios": [
+            {
+                "puerto": 135,
+                "banner": "Sin banner",
+                "fingerprint": {
+                    "producto": "Desconocido",
+                    "version": "Desconocida",
+                    "cpe": null
+                },
+                "cves": []
+            },
+            {
+                "puerto": 139,
+                "banner": "Binario (SMB/NetBIOS/RDP)",
+                "fingerprint": {
+                    "producto": "Desconocido",
+                    "version": "Desconocida",
+                    "cpe": null
+                },
+                "cves": []
+            },
+            {
+                "puerto": 445,
+                "banner": "Sin banner",
+                "fingerprint": {
+                    "producto": "Desconocido",
+                    "version": "Desconocida",
+                    "cpe": null
+                },
+                "cves": []
+            },
+            {
+                "puerto": 3389,
+                "banner": "Sin banner",
+                "fingerprint": {
+                    "producto": "Desconocido",
+                    "version": "Desconocida",
+                    "cpe": null
+                },
+                "cves": []
+            }
+        ]
+    },
+    {
+        "ip": "192.168.1.7",
+        "mac": "54:44:a3:63:75:79",
+        "servicios": [
+            {
+                "puerto": 8080,
+                "banner": "HTTP/1.0 404 Not Found\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Headers: Content-Type\r\nContent-Type: text/html\r\nContent-Length: 345\r\nConnection: close\r\nDate: Wed, 18 Nov 2026 19:18:06 GMT\r\nServer: WebServer\r\n\r\n<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n <head>\n  <title>404 - Not Found</title>\n </head>\n <body>\n  <h1>404 - Not Found</h1>\n </body>\n</html>",
+                "fingerprint": {
+                    "producto": "WebServer",
+                    "version": "Desconocida",
+                    "raw": "WebServer"
+                },
+                "cves": []
+            }
+        ]
+    },
+    {
+        "ip": "192.168.1.6",
+        "mac": "ac:f4:2c:76:72:14",
+        "servicios": []
+    },
+    {
+        "ip": "192.168.1.5",
+        "mac": "ec:8a:c4:1f:77:a6",
+        "servicios": []
+    },
+    {
+        "ip": "192.168.1.13",
+        "mac": "fa:fd:8a:30:08:61",
+        "servicios": []
+    }
+]

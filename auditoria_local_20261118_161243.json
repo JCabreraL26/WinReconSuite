@@ -1,0 +1,138 @@
+{
+    "datos_crudos": {
+        "usuario": "dell",
+        "hostname": "Jorge",
+        "so": "Microsoft Windows 11 Pro",
+        "antivirus_activo": true,
+        "firewall_activo": true,
+        "rdp_habilitado": true,
+        "puertos_abiertos": [
+            {
+                "puerto": 3389,
+                "ip": "::",
+                "proceso": "svchost.exe",
+                "pid": 7056
+            },
+            {
+                "puerto": 49664,
+                "ip": "::",
+                "proceso": "lsass.exe",
+                "pid": 1172
+            },
+            {
+                "puerto": 61398,
+                "ip": "127.0.0.1",
+                "proceso": "Code.exe",
+                "pid": 18268
+            },
+            {
+                "puerto": 49671,
+                "ip": "::",
+                "proceso": "svchost.exe",
+                "pid": 7172
+            },
+            {
+                "puerto": 7680,
+                "ip": "::",
+                "proceso": "svchost.exe",
+                "pid": 5952
+            },
+            {
+                "puerto": 5357,
+                "ip": "0.0.0.0",
+                "proceso": "System",
+                "pid": 4
+            },
+            {
+                "puerto": 49672,
+                "ip": "::",
+                "proceso": "services.exe",
+                "pid": 1120
+            },
+            {
+                "puerto": 49667,
+                "ip": "0.0.0.0",
+                "proceso": "svchost.exe",
+                "pid": 2056
+            },
+            {
+                "puerto": 139,
+                "ip": "192.168.56.1",
+                "proceso": "System",
+                "pid": 4
+            },
+            {
+                "puerto": 59430,
+                "ip": "127.0.0.1",
+                "proceso": "Code.exe",
+                "pid": 18360
+            },
+            {
+                "puerto": 49666,
+                "ip": "::",
+                "proceso": "svchost.exe",
+                "pid": 3012
+            },
+            {
+                "puerto": 5040,
+                "ip": "0.0.0.0",
+                "proceso": "svchost.exe",
+                "pid": 9692
+            },
+            {
+                "puerto": 49668,
+                "ip": "0.0.0.0",
+                "proceso": "spoolsv.exe",
+                "pid": 3676
+            },
+            {
+                "puerto": 58895,
+                "ip": "127.0.0.1",
+                "proceso": "Code.exe",
+                "pid": 4736
+            },
+            {
+                "puerto": 445,
+                "ip": "::",
+                "proceso": "System",
+                "pid": 4
+            },
+            {
+                "puerto": 49665,
+                "ip": "0.0.0.0",
+                "proceso": "wininit.exe",
+                "pid": 788
+            },
+            {
+                "puerto": 61725,
+                "ip": "127.0.0.1",
+                "proceso": "Code.exe",
+                "pid": 18268
+            },
+            {
+                "puerto": 49669,
+                "ip": "::1",
+                "proceso": "jhi_service.exe",
+                "pid": 4056
+            },
+            {
+                "puerto": 135,
+                "ip": "::",
+                "proceso": "svchost.exe",
+                "pid": 1476
+            }
+        ]
+    },
+    "hallazgos": [
+        {
+            "severidad": "CRÍTICA",
+            "hallazgo": "Print Spooler expuesto",
+            "detalle": "Riesgo de PrintNightmare."
+        },
+        {
+            "severidad": "ALTA",
+            "hallazgo": "RDP habilitado",
+            "detalle": "Riesgo de fuerza bruta o BlueKeep."
+        }
+    ]
+}
