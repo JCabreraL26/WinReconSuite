@@ -2,8 +2,12 @@
 
 Herramienta modular de reconocimiento y auditoría de seguridad para entornos Windows, desarrollada en Python. Diseñada para Ethical Hackers y consultores de ciberseguridad.
 
-![Reporte de WinRecon](screenshot_reporte.png)
-*(Reemplaza esto con tu captura)*
+![Reporte de WinRecon](assets/)
+
+Herramienta modular de reconocimiento y auditoría de seguridad para entornos Windows.
+
+![Captura del Reporte de WinRecon](assets/screenshot.png)
+
 
 ## 🚀 Características
 - **Auditoría Local:** Detecta configuraciones inseguras (RDP expuesto, Print Spooler, Firewall).
