@@ -2,6 +2,7 @@
 import argparse
 import json
 import datetime
+import sys
 from local.audit import recolectar_datos, evaluar_riesgos
 from local.sysmon_ids import analizar_eventos_sysmon # <-- Nuevo módulo IDS
 from core.scanner import descubrir_hosts, escanear_puertos, obtener_banner
@@ -109,7 +110,7 @@ if __name__ == "__main__":
     # Si no se pasa ningún argumento, mostrar la ayuda
     if not args.local and not args.red:
         parser.print_help()
-        exit()
+        sys.exit(0)
 
     # 1. Ejecutar Auditoría Local
     if args.local:
