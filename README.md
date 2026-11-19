@@ -13,7 +13,7 @@ Herramienta modular de reconocimiento y auditoría de seguridad para entornos Wi
 - **Reportes Visuales:** Genera dashboards en HTML listos para entregar al cliente.
 
 ## 🛠️ Instalación y Uso (Desarrollo)
-1. Clona el repositorio: `git clone https://github.com/TU_USUARIO/WinReconSuite.git`
+1. Clona el repositorio: `git clone https://github.com/JCabreraL26/WinReconSuite.git`
 2. Crea un entorno virtual: `python -m venv .venv`
 3. Actívalo: `.\.venv\Scripts\Activate.ps1`
 4. Instala dependencias: `pip install -r requirements.txt`
