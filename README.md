@@ -21,10 +21,3 @@ Herramienta modular de reconocimiento y auditoría de seguridad para entornos Wi
 ### Ejemplo de uso:
 ```powershell
 python main.py --local --sysmon --red 192.168.1.0/24 --top
-
-📦 Despliegue (Ejecutable)
-El proyecto está diseñado para ser compilado con PyInstaller. Para generar el .exe
-
-pyinstaller --noconfirm --onefile --console --uac-admin --name "WinRecon" --collect-all scapy main.py
-
-Nota: Para el escaneo de red (Scapy), se requiere tener instalado Npcap en la máquina objetivo.
