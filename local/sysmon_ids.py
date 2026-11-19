@@ -39,6 +39,7 @@ PADRES_BENIGNOS = (
     "windowsterminal.exe", "wt.exe",
     "git.exe", "githubdesktop.exe", "sourcetree.exe", "fork.exe",
     "explorer.exe", "gk.exe", "gitkraken.exe", "gitkraken-cli.exe",
+    "winrecon.exe",
 )
 
 PATRONES_SOSPECHOSOS = [
@@ -77,7 +78,9 @@ REDES_PRIVADAS = [
     )
 ]
 
-NOMBRES_TEMP_BENIGNOS = ("__psscriptpolicytest_", "~df", "~$", "etilqs_")
+NOMBRES_TEMP_BENIGNOS = ("__psscriptpolicytest_", "~df", "~$", "etilqs_"
+                         "__mei",
+                         )
 
 DNS_BENIGNOS = (
     ".applicationinsights.azure.com", ".visualstudio.com", ".vscode-cdn.net",
@@ -240,6 +243,12 @@ def regla_file_create(eid: str, d: dict):
 
 def regla_registry_event(eid: str, d: dict):
     obj = (d.get("TargetObject") or "").lower()
+    image = (d.get("Image") or "").lower()
+
+    # Excepción: Auto-inicio legítimo de Edge
+    if "microsoftedgeutolauch" in obj and image.endswith("msedge.exe"):
+        return None
+
     if any(k in obj for k in CLAVES_PERSISTENCIA):
         return ("CRIT", eid, f"Persistencia en registro: {obj}", d)
     return None

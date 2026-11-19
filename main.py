@@ -1,4 +1,6 @@
 # main.py
+import os
+import sys
 import argparse
 import json
 import datetime
@@ -8,6 +10,12 @@ from core.scanner import descubrir_hosts, escanear_puertos, obtener_banner
 from core.fingerprint import extraer_info
 from intel.cve_engine import buscar_cves
 from report.generator import generar_html_local, generar_html_red
+
+
+# --- MAGIA PARA EL .EXE ---
+# Si se ejecuta como .exe, cambiar el directorio de trabajo a la carpeta del .exe
+if getattr(sys, 'frozen', False):
+    os.chdir(os.path.dirname(sys.executable))
 
 def guardar_json(datos, nombre):
     ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -99,38 +107,50 @@ def ejecutar_escaneo_red(rango_red, lista_puertos):
 # BLOQUE DE EJECUCIÓN PRINCIPAL (CLI)
 # ==========================================
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="WinRecon Suite - Auditoría de Seguridad Ética")
-    
-    parser.add_argument("--local", action="store_true", help="Ejecutar auditoría local (Windows)")
-    parser.add_argument("--sysmon", action="store_true", help="Ejecutar análisis de Sysmon")
-    parser.add_argument("--red", type=str, help="IP o rango de red a escanear (ej. 192.168.1.14 o 192.168.1.0/24)")
-    
-    # Nuevos argumentos para controlar la cantidad de puertos
-    grupo_puertos = parser.add_mutually_exclusive_group()
-    grupo_puertos.add_argument("--top", action="store_true", help="Escanear solo los ~20 puertos más comunes (Rápido)")
-    grupo_puertos.add_argument("--full", action="store_true", help="Escanear TODOS los 65535 puertos (Lento, ideal para auditar tu IP)")
-    
-    args = parser.parse_args()
-    
-    if not args.local and not args.red:
-        parser.print_help()
-        exit()
-
-    # 1. Auditoría Local
-    if args.local:
-        ejecutar_auditoria_local(escanear_sysmon=args.sysmon)
+    try:
+        parser = argparse.ArgumentParser(description="WinRecon Suite - Auditoría de Seguridad Ética")
         
-    # 2. Escaneo de Red
-    if args.red:
-        # Lógica para elegir la lista de puertos
-        if args.full:
-            puertos_a_escanear = range(1, 65536)
-            print("[!] MODO FULL: Se escanearán los 65.535 puertos. Esto puede tardar varios minutos...")
-        elif args.top:
-            puertos_a_escanear = [21, 22, 23, 25, 53, 80, 110, 135, 139, 143, 443, 445, 1433, 3306, 3389, 5900, 8080, 8000, 8443, 27017]
-            print("[*] MODO TOP: Escaneando puertos comunes...")
+        parser.add_argument("--local", action="store_true", help="Ejecutar auditoría local (Windows)")
+        parser.add_argument("--sysmon", action="store_true", help="Ejecutar análisis de Sysmon")
+        parser.add_argument("--red", type=str, help="IP o rango de red a escanear (ej. 192.168.1.14 o 192.168.1.0/24)")
+        
+        grupo_puertos = parser.add_mutually_exclusive_group()
+        grupo_puertos.add_argument("--top", action="store_true", help="Escanear solo los ~20 puertos más comunes (Rápido)")
+        grupo_puertos.add_argument("--full", action="store_true", help="Escanear TODOS los 65535 puertos (Lento, ideal para auditar tu IP)")
+        
+        args = parser.parse_args()
+        
+        if not args.local and not args.red:
+            parser.print_help()
+            # Ya no ponemos exit() aquí, dejamos que caiga al finally para que haga la pausa
         else:
-            puertos_a_escanear = range(1, 1025)
-            print("[*] MODO DEFAULT: Escaneando puertos del 1 al 1024...")
-            
-        ejecutar_escaneo_red(args.red, puertos_a_escanear)
+            # 1. Auditoría Local
+            if args.local:
+                ejecutar_auditoria_local(escanear_sysmon=args.sysmon)
+                
+            # 2. Escaneo de Red
+            if args.red:
+                if args.full:
+                    puertos_a_escanear = range(1, 65536)
+                    print("[!] MODO FULL: Se escanearán los 65.535 puertos. Esto puede tardar varios minutos...")
+                elif args.top:
+                    puertos_a_escanear = [21, 22, 23, 25, 53, 80, 110, 135, 139, 143, 443, 445, 1433, 3306, 3389, 5900, 8080, 8000, 8443, 27017]
+                    print("[*] MODO TOP: Escaneando puertos comunes...")
+                else:
+                    puertos_a_escanear = range(1, 1025)
+                    print("[*] MODO DEFAULT: Escaneando puertos del 1 al 1024...")
+
+                ejecutar_escaneo_red(args.red, puertos_a_escanear)
+
+    except Exception as e:
+        # Si ocurre CUALQUIER error, lo imprimimos aquí
+        import traceback
+        print("\n" + "="*50)
+        print("❌ OCURRIÓ UN ERROR INESPERADO:")
+        traceback.print_exc()
+        print("="*50)
+
+    finally:
+        # ESTO SE EJECUTA SIEMPRE (haya error o no) SOLO si es el .exe
+        if getattr(sys, 'frozen', False):
+            input("\n[!] Proceso finalizado. Presiona Enter para salir...")
