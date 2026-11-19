@@ -32,7 +32,7 @@ def escanear_puerto_tcp(host, puerto, timeout=0.5):
     except Exception:
         return None
 
-def escanear_puertos(host, lista_puertos, hilos=100):
+def escanear_puertos(host, lista_puertos, hilos=500): # <-- Subimos de 100 a 500
     """Escanea una lista de puertos concurrentemente."""
     print(f"[*] Escaneando {len(lista_puertos)} puertos en {host}...")
     abiertos = []
